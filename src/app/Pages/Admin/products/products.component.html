@@ -1,0 +1,98 @@
+<div class="row my-5">
+    <div [ngClass]="isSidePanelVisible ? 'col-8' : 'col-12'">
+        <div class="card">
+            <div class="card-header bg-primary">
+                <div class="row">
+                    <div class="col-6 text-white">
+                        Product List
+                    </div>
+                    <div class="col-6 text-end">
+                        <button class="btn btn-sm btn btn-warning" (click)="openSidePanel()">New</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3" *ngFor="let product of productsList">
+                        <div class="card">
+                            <img class="card-img-top" [src]="product.productImageUrl" alt="Card image" width="150px" height="200px">
+                            <div class="card-body">
+                              <h4 class="card-title">{{product.productName}}</h4>
+                              <p class="card-text">{{product.categoryName}}</p>
+                              <a href="#" class="btn btn-primary">See Profile</a>
+                            </div>
+                          </div>
+                    </div>
+
+                 
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4" *ngIf="isSidePanelVisible">
+        <div class="card">
+            <div class="card-header bg-warning">
+                <div class="row">
+                    <div class="col-6 text-dark">
+                        New Product 
+                    </div>
+                    <div class="col-6  text-end">
+                        <button class="btn btn-sm btn btn-success" (click)="closeSidePanel()">Close</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="">SKU</label>
+                        <input type="text" [(ngModel)]="prodObject.productSku" class="form-control">
+                    </div>
+
+                    <div class="col-6">
+                        <label for="">Name</label>
+                        <input type="text" [(ngModel)]="prodObject.productName" class="form-control">
+                    </div>
+
+                    <div class="col-6">
+                        <label for="">Short Name</label>
+                        <input type="text" [(ngModel)]="prodObject.productShortName" class="form-control">
+                    </div>
+
+                    <div class="col-6">
+                        <label for="">Category</label>
+                        <select name="" class="form-select" [(ngModel)]="prodObject.categoryId">
+                            <option *ngFor="let cate of categoryList" [value]="cate.categoryId">{{cate.categoryName}}</option>
+                        </select>
+                
+                    </div>
+
+                    <div class="col-6">
+                        <label for="">Delivery Time Span</label>
+                        <input type="text" [(ngModel)]="prodObject.deliveryTimeSpan" class="form-control">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="">Image Url</label>
+                        <input type="text" [(ngModel)]="prodObject.productImageUrl" class="form-control">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="">Product Description</label>
+                        <input type="text" [(ngModel)]="prodObject.productDescription" class="form-control">
+                    </div>
+                </div>
+                <div class="row my-1">
+                    <div class="col col-6">
+                        <button class="btn btn-success">Cancle</button>
+                    </div>
+                    <div class="col col-6">
+                        <button class="btn btn-success" (click)="onSave()">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
